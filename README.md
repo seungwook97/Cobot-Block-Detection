@@ -1,5 +1,3 @@
-# orbbec-depthcamera
-
 # Block Detection with Astra Stereo U3 Camera
 
 This project uses the Astra Stereo U3 3D depth camera and ROS2 to detect blocks on a conveyor belt, track their coordinates (x, y, z), and publish the detected coordinates for further processing by a robotic system (e.g., a Cobot).
