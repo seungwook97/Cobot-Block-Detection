@@ -1,28 +1,39 @@
-# Block Detection with Astra Stereo U3 Camera
+# Robotic Sorting System with Object Detection and MyCobot Control
 
-This project uses the Astra Stereo U3 3D depth camera and ROS2 to detect blocks on a conveyor belt, track their coordinates (x, y, z), and publish the detected coordinates for further processing by a robotic system (e.g., a Cobot).
+## Overview
+
+This project implements a robotic sorting system where blocks move along a conveyor belt. The blocks are detected using the YOLO object detection model and classified as either "normal" or "defective". A MyCobot robotic arm then sorts the blocks into two separate locations based on their classification. The system uses an **Astra U3 depth camera** for precise depth perception and object tracking on the conveyor belt.
 
 ## Features
 
-- Uses the Astra Stereo U3 3D camera for depth perception.
-- Processes infrared (IR) and depth images to detect blocks on a conveyor belt.
-- Extracts and publishes the (x, y, z) coordinates of detected blocks.
-- Integrates with ROS2 for seamless communication and robot control.
+- **Conveyor Belt Simulation**:  
+  The blocks move along a conveyor belt, and their movement is tracked for sorting purposes.
+
+- **YOLO Object Detection**:  
+  Real-time object detection using the YOLO model to classify blocks as either "True" (normal) or "False" (defective).
+
+- **Robotic Arm Control**:  
+  A MyCobot robotic arm sorts the blocks. Normal blocks ("True") are moved to the left, and defective blocks ("False") are moved to the right.
+
+- **Multithreading**:  
+  The system uses multithreading to simultaneously detect objects and control the robotic arm for efficient sorting.
+
+- **Astra U3 Depth Camera**:  
+  The Astra U3 depth camera provides depth data to detect the blocks and track their movement along the conveyor belt, improving accuracy and reliability.
+
+- **ROS2 Communication**:  
+  The system communicates using ROS2 to send the detected object coordinates to the robotic arm for sorting.
 
 ## Requirements
 
-- ROS2 (Humble or higher)
-- OpenCV
-- cv_bridge
-- Astra Stereo U3 Camera
+- **Python Libraries**:
+  - `ultralytics` (for YOLO)
+  - `pymycobot` (for MyCobot control)
+  - `opencv-python` (for camera and image processing)
+  - `threading` (for multithreading)
+  - `time` (for delays)
+  - `roslibpy` (for ROS2 communication)
 
-## Installation
-
-### 1. Install ROS2 and dependencies
-Follow the instructions for setting up ROS2 on Ubuntu [here](https://docs.ros.org/en/humble/Installation/Ubuntu-Install-Debians.html).
-
-### 2. Install OpenCV
-You can install OpenCV using the following command:
-
-```bash
-sudo apt-get install libopencv-dev python3-opencv
+  Install required libraries using:
+  ```bash
+  pip install ultralytics pymycobot opencv-python roslibpy
